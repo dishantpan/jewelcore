@@ -4,10 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JewelcoreApplication {
+public class JewelCoreApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JewelcoreApplication.class, args);
+		SpringApplication.run(JewelCoreApplication.class, args);
 	}
+
 
 }
