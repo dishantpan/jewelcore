@@ -7,7 +7,6 @@ import com.dishant.jewelcore.masterdata.metal.repository.MetalRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.dishant.jewelcore.common.exception.ResourceNotFoundException;
-import com.dishant.jewelcore.masterdata.metal.entity.Metal;
 import com.dishant.jewelcore.masterdata.metal.dto.MetalUpdateRequest;
 import java.util.List;
 
