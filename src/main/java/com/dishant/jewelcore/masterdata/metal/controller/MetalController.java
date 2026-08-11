@@ -5,6 +5,7 @@ import com.dishant.jewelcore.masterdata.metal.dto.MetalCreateRequest;
 import com.dishant.jewelcore.masterdata.metal.dto.MetalResponse;
 import com.dishant.jewelcore.masterdata.metal.dto.MetalUpdateRequest;
 import com.dishant.jewelcore.masterdata.metal.service.MetalService;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -78,4 +79,18 @@ public class MetalController {
                     )
             );
         }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Void>> deactivateMetal(
+            @PathVariable Long id) {
+
+        metalService.deactivateMetal(id);
+
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        "Metal deactivated successfully",
+                        null
+                )
+        );
+    }
     }

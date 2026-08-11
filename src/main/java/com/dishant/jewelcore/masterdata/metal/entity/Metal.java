@@ -83,4 +83,8 @@ public class Metal {
         this.name = name;
         this.code = code;
     }
+
+    public void deactivate() {
+        this.active = false;
+    }
 }

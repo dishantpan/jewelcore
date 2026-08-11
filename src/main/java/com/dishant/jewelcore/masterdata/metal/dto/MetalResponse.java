@@ -13,6 +13,10 @@ public record MetalResponse(
         LocalDateTime updatedAt
 ) {
 
+    public MetalResponse(long id, String silver, String sil, boolean active) {
+        this(id, silver, sil, active, null, null);
+    }
+
     public static MetalResponse from(Metal metal) {
         return new MetalResponse(
                 metal.getId(),

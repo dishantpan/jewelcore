@@ -80,4 +80,23 @@ public class MetalService {
 
         return MetalResponse.from(updatedMetal);
     }
+
+    @Transactional
+    public void deactivateMetal(Long id) {
+
+        Metal metal = metalRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Metal not found with id: " + id
+                ));
+
+        if (!metal.isActive()) {
+            throw new IllegalStateException(
+                    "Metal is already inactive: " + id
+            );
+        }
+
+        metal.deactivate();
+
+        metalRepository.save(metal);
+    }
 }
