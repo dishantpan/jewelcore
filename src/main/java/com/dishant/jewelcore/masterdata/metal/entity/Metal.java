@@ -78,4 +78,9 @@ public class Metal {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+    public void updateDetails(String name, String code) {
+        this.name = name;
+        this.code = code;
+    }
 }
