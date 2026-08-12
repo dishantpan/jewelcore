@@ -1,14 +1,15 @@
 package com.dishant.jewelcore.user.service;
 
+import com.dishant.jewelcore.common.exception.ResourceNotFoundException;
 import com.dishant.jewelcore.user.entity.User;
 import com.dishant.jewelcore.user.entity.UserRole;
 import com.dishant.jewelcore.user.repository.UserRepository;
-import com.dishant.jewelcore.common.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
@@ -25,6 +26,9 @@ class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
     @InjectMocks
     private UserService userService;
 
@@ -34,9 +38,12 @@ class UserServiceTest {
         when(userRepository.findByUsername("owner"))
                 .thenReturn(Optional.empty());
 
+        when(passwordEncoder.encode("password"))
+                .thenReturn("encoded-password");
+
         User savedUser = new User(
                 "owner",
-                "password",
+                "encoded-password",
                 UserRole.OWNER
         );
 
@@ -51,10 +58,12 @@ class UserServiceTest {
 
         assertThat(result).isNotNull();
         assertThat(result.getUsername()).isEqualTo("owner");
+        assertThat(result.getPassword()).isEqualTo("encoded-password");
         assertThat(result.getRole()).isEqualTo(UserRole.OWNER);
         assertThat(result.isActive()).isTrue();
 
         verify(userRepository).findByUsername("owner");
+        verify(passwordEncoder).encode("password");
         verify(userRepository).save(any(User.class));
     }
 
@@ -81,8 +90,10 @@ class UserServiceTest {
                 .hasMessage("Username already exists: owner");
 
         verify(userRepository).findByUsername("owner");
+        verify(passwordEncoder, never()).encode("anotherPassword");
         verify(userRepository, never()).save(any(User.class));
     }
+
     @Test
     void shouldDeactivateActiveUser() {
 

@@ -1,9 +1,10 @@
 package com.dishant.jewelcore.user.service;
 
+import com.dishant.jewelcore.common.exception.ResourceNotFoundException;
 import com.dishant.jewelcore.user.entity.User;
 import com.dishant.jewelcore.user.entity.UserRole;
 import com.dishant.jewelcore.user.repository.UserRepository;
-import com.dishant.jewelcore.common.exception.ResourceNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,12 +13,20 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder) {
+
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public User createUser(String username, String password, UserRole role) {
+    public User createUser(
+            String username,
+            String password,
+            UserRole role) {
 
         if (userRepository.findByUsername(username).isPresent()) {
             throw new IllegalArgumentException(
@@ -25,9 +34,11 @@ public class UserService {
             );
         }
 
+        String encodedPassword = passwordEncoder.encode(password);
+
         User user = new User(
                 username,
-                password,
+                encodedPassword,
                 role
         );
 
