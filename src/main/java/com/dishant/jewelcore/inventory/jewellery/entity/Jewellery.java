@@ -24,10 +24,16 @@ public class Jewellery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 50)
+    @Column(
+            nullable = false,
+            length = 50
+    )
     private String sku;
 
-    @Column(nullable = false, length = 150)
+    @Column(
+            nullable = false,
+            length = 150
+    )
     private String name;
 
     @Column(length = 500)
@@ -96,7 +102,7 @@ public class Jewellery {
     private BigDecimal makingCharge;
 
     @Column(nullable = false)
-    private boolean active = true;
+    private boolean active;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -134,13 +140,16 @@ public class Jewellery {
 
     @PrePersist
     protected void onCreate() {
+
         LocalDateTime now = LocalDateTime.now();
+
         this.createdAt = now;
         this.updatedAt = now;
     }
 
     @PreUpdate
     protected void onUpdate() {
+
         this.updatedAt = LocalDateTime.now();
     }
 
@@ -168,6 +177,10 @@ public class Jewellery {
 
     public void deactivate() {
         this.active = false;
+    }
+
+    public void activate() {
+        this.active = true;
     }
 
     public Long getId() {

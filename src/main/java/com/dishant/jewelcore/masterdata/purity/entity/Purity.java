@@ -1,6 +1,7 @@
 package com.dishant.jewelcore.masterdata.purity.entity;
 
 import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -20,17 +21,29 @@ public class Purity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(
+            nullable = false,
+            length = 100
+    )
     private String name;
 
-    @Column(nullable = false, length = 20)
+    @Column(
+            nullable = false,
+            length = 20
+    )
     private String code;
 
-    @Column(nullable = false, precision = 5, scale = 2)
+    @Column(
+            nullable = false,
+            precision = 5,
+            scale = 2
+    )
     private BigDecimal percentage;
 
-    @Column(nullable = false)
-    private boolean active = true;
+    @Column(
+            nullable = false
+    )
+    private boolean active;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -54,13 +67,16 @@ public class Purity {
 
     @PrePersist
     protected void onCreate() {
+
         LocalDateTime now = LocalDateTime.now();
+
         this.createdAt = now;
         this.updatedAt = now;
     }
 
     @PreUpdate
     protected void onUpdate() {
+
         this.updatedAt = LocalDateTime.now();
     }
 
@@ -76,6 +92,10 @@ public class Purity {
 
     public void deactivate() {
         this.active = false;
+    }
+
+    public void activate() {
+        this.active = true;
     }
 
     public Long getId() {

@@ -1,6 +1,7 @@
 package com.dishant.jewelcore.masterdata.category.entity;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,14 +20,22 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(
+            nullable = false,
+            length = 100
+    )
     private String name;
 
-    @Column(nullable = false, length = 30)
+    @Column(
+            nullable = false,
+            length = 30
+    )
     private String code;
 
-    @Column(nullable = false)
-    private boolean active = true;
+    @Column(
+            nullable = false
+    )
+    private boolean active;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -45,23 +54,33 @@ public class Category {
 
     @PrePersist
     protected void onCreate() {
+
         LocalDateTime now = LocalDateTime.now();
+
         this.createdAt = now;
         this.updatedAt = now;
     }
 
     @PreUpdate
     protected void onUpdate() {
+
         this.updatedAt = LocalDateTime.now();
     }
 
-    public void updateDetails(String name, String code) {
+    public void updateDetails(
+            String name,
+            String code) {
+
         this.name = name;
         this.code = code;
     }
 
     public void deactivate() {
         this.active = false;
+    }
+
+    public void activate() {
+        this.active = true;
     }
 
     public Long getId() {

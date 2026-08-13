@@ -9,6 +9,4 @@ public class JewelCoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JewelCoreApplication.class, args);
 	}
-
-
 }

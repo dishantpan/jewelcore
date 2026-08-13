@@ -1,32 +1,45 @@
 package com.dishant.jewelcore.masterdata.metal.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "metals")
+@Table(
+        name = "metals",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "uk_metals_name",
+                        columnNames = "name"
+                ),
+                @UniqueConstraint(
+                        name = "uk_metals_code",
+                        columnNames = "code"
+                )
+        }
+)
 public class Metal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(
+            nullable = false,
+            length = 50
+    )
     private String name;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(
+            nullable = false,
+            length = 20
+    )
     private String code;
 
-    @Column(nullable = false)
-    private boolean active = true;
+    @Column(
+            nullable = false
+    )
+    private boolean active;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -35,12 +48,42 @@ public class Metal {
     private LocalDateTime updatedAt;
 
     protected Metal() {
-        // Hibernate ke liye
     }
 
     public Metal(String name, String code) {
         this.name = name;
         this.code = code;
+        this.active = true;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+
+        LocalDateTime now = LocalDateTime.now();
+
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void updateDetails(
+            String name,
+            String code) {
+
+        this.name = name;
+        this.code = code;
+    }
+
+    public void deactivate() {
+        this.active = false;
+    }
+
+    public void activate() {
         this.active = true;
     }
 
@@ -66,25 +109,5 @@ public class Metal {
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
-    }
-    @PrePersist
-    protected void onCreate() {
-        LocalDateTime now = LocalDateTime.now();
-        createdAt = now;
-        updatedAt = now;
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
-
-    public void updateDetails(String name, String code) {
-        this.name = name;
-        this.code = code;
-    }
-
-    public void deactivate() {
-        this.active = false;
     }
 }
