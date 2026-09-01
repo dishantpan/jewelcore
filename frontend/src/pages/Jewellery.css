@@ -1,0 +1,514 @@
+.jewellery-page {
+    min-height: 100vh;
+    padding: 38px;
+    background: #0b0b0a;
+    color: #eeeae1;
+}
+
+
+/* ================= HEADER ================= */
+
+.page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 30px;
+}
+
+.page-eyebrow {
+    margin-bottom: 9px;
+
+    color: #bd9c52;
+
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.page-header h1 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+
+    font-size: 38px;
+    font-weight: 400;
+}
+
+.page-header p {
+    margin: 9px 0 0;
+
+    color: #777168;
+
+    font-size: 13px;
+}
+
+
+/* ================= ACTION ================= */
+
+.primary-action {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    height: 42px;
+
+    padding: 0 17px;
+
+    border: 1px solid #8d713d;
+
+    background: #b99750;
+
+    color: #15130f;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.primary-action:hover {
+    background: #d0ae62;
+}
+
+
+/* ================= TOOLBAR ================= */
+
+.jewellery-toolbar {
+    display: flex;
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+.search-box {
+    flex: 1;
+
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 0 15px;
+
+    border: 1px solid #292721;
+
+    background: #111110;
+
+    color: #6f6a61;
+}
+
+.search-box:focus-within {
+    border-color: #75603a;
+}
+
+.search-box input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #eeeae1;
+
+    font-size: 12px;
+}
+
+.search-box input::placeholder {
+    color: #625e56;
+}
+
+.refresh-button {
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #292721;
+
+    background: #111110;
+
+    color: #8c8579;
+}
+
+.refresh-button:hover {
+    border-color: #75603a;
+    color: #d0ae62;
+}
+
+
+/* ================= TABLE ================= */
+
+.jewellery-table-wrapper {
+    overflow-x: auto;
+
+    border: 1px solid #292721;
+
+    background: #111110;
+}
+
+.jewellery-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 900px;
+}
+
+.jewellery-table th {
+    padding: 15px 18px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #292721;
+
+    color: #68635b;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    font-weight: 500;
+}
+
+.jewellery-table td {
+    padding: 17px 18px;
+
+    border-bottom: 1px solid #211f1b;
+
+    color: #aaa398;
+
+    font-size: 12px;
+}
+
+.jewellery-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.jewellery-table tbody tr:hover {
+    background: #161512;
+}
+
+.item-main {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.item-main strong {
+    color: #e8e1d5;
+
+    font-size: 13px;
+
+    font-weight: 400;
+}
+
+.item-main span {
+    color: #625e56;
+
+    font-size: 10px;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* ================= STATUS ================= */
+
+.status {
+    display: inline-flex;
+
+    padding: 5px 8px;
+
+    border: 1px solid;
+
+    font-size: 9px;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+}
+
+.status.active {
+    border-color: #4f4935;
+
+    color: #b9a16a;
+
+    background: #171610;
+}
+
+.status.inactive {
+    border-color: #4d3835;
+
+    color: #9b6d67;
+
+    background: #181211;
+}
+
+
+/* ================= VIEW ================= */
+
+.view-button {
+    width: 32px;
+    height: 32px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #292721;
+
+    background: transparent;
+
+    color: #777168;
+}
+
+.view-button:hover {
+    color: #d0ae62;
+
+    border-color: #75603a;
+}
+
+
+/* ================= STATES ================= */
+
+.page-state {
+    min-height: 240px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+    color: #716b62;
+
+    font-size: 12px;
+}
+
+.page-state strong {
+    color: #aaa398;
+
+    font-weight: 400;
+}
+
+.empty-state svg {
+    color: #75603a;
+
+    margin-bottom: 5px;
+}
+
+.page-error {
+    margin-bottom: 18px;
+
+    padding: 14px 16px;
+
+    border: 1px solid #573737;
+
+    background: #1b1212;
+
+    color: #c88b8b;
+
+    font-size: 12px;
+}
+
+
+/* ================= MOBILE ================= */
+
+.jewellery-mobile-list {
+    display: none;
+}
+
+
+@media (max-width: 767px) {
+
+    .jewellery-page {
+        padding: 22px 17px 95px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+
+        margin-bottom: 22px;
+    }
+
+    .page-header h1 {
+        font-size: 31px;
+    }
+
+    .page-header p {
+        max-width: 270px;
+
+        line-height: 1.55;
+    }
+
+    .primary-action {
+        width: 43px;
+        height: 43px;
+
+        padding: 0;
+
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        font-size: 0;
+    }
+
+    .primary-action svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .jewellery-table-wrapper {
+        display: none;
+    }
+
+    .jewellery-mobile-list {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .jewellery-toolbar {
+        margin-bottom: 15px;
+    }
+
+    .search-box {
+        height: 45px;
+    }
+
+    .refresh-button {
+        height: 45px;
+        width: 45px;
+    }
+
+    .jewellery-card {
+        display: flex;
+
+        gap: 13px;
+
+        padding: 15px;
+
+        background: #111110;
+
+        border: 1px solid #292721;
+
+        cursor: pointer;
+
+        transition: 0.2s ease;
+    }
+
+    .jewellery-card:active {
+        border-color: #75603a;
+    }
+
+    .card-icon {
+        width: 39px;
+        height: 39px;
+
+        display: grid;
+        place-items: center;
+
+        flex-shrink: 0;
+
+        border: 1px solid #50452e;
+
+        color: #b99750;
+    }
+
+    .card-content {
+        flex: 1;
+
+        min-width: 0;
+    }
+
+    .card-top {
+        display: flex;
+
+        align-items: flex-start;
+
+        justify-content: space-between;
+
+        gap: 10px;
+    }
+
+    .card-top h2 {
+        margin: 0 0 3px;
+
+        color: #e7dfd1;
+
+        font-family: Georgia, serif;
+
+        font-size: 16px;
+
+        font-weight: 400;
+    }
+
+    .card-top span {
+        color: #625e56;
+
+        font-size: 9px;
+    }
+
+    .card-top > svg {
+        color: #625e56;
+
+        flex-shrink: 0;
+    }
+
+    .card-details {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 6px;
+
+        margin-top: 13px;
+    }
+
+    .card-details span {
+        padding: 4px 7px;
+
+        background: #181714;
+
+        border: 1px solid #25231f;
+
+        color: #817a70;
+
+        font-size: 9px;
+    }
+
+    .card-bottom {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin-top: 14px;
+
+        padding-top: 11px;
+
+        border-top: 1px solid #211f1b;
+    }
+
+    .card-bottom strong {
+        color: #c6a55e;
+
+        font-family: Georgia, serif;
+
+        font-size: 14px;
+
+        font-weight: 400;
+    }
+}

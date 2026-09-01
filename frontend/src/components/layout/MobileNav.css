@@ -1,0 +1,103 @@
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+.mobile-nav {
+    display: none;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+    .mobile-nav {
+        position: fixed;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        height: 72px;
+
+        background: rgba(16, 16, 15, 0.97);
+
+        border-top: 1px solid #292721;
+
+        display: grid;
+
+        grid-template-columns: repeat(5, 1fr);
+
+        z-index: 1000;
+
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+
+    .mobile-nav-item {
+        position: relative;
+
+        border: 0;
+
+        background: transparent;
+
+        color: #777168;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 5px;
+
+        cursor: pointer;
+
+        font-family: inherit;
+
+        transition:
+                color 0.2s ease,
+                background 0.2s ease;
+    }
+
+
+    .mobile-nav-item span {
+        font-size: 9px;
+
+        letter-spacing: 0.5px;
+    }
+
+
+    .mobile-nav-item.active {
+        color: #d6b76b;
+    }
+
+
+    .mobile-nav-item.active::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: 26px;
+
+        height: 2px;
+
+        background: #b99750;
+    }
+
+
+    .mobile-nav-item:active {
+        background: #171613;
+    }
+
+}

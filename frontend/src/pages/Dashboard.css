@@ -1,0 +1,436 @@
+.dashboard-page {
+    min-height: 100vh;
+    background: #0b0b0a;
+    color: #eeeae1;
+}
+
+
+/* ================= TOPBAR ================= */
+
+.dashboard-topbar {
+    height: 76px;
+
+    border-bottom: 1px solid #27251f;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 38px;
+
+    box-sizing: border-box;
+}
+
+.topbar-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.topbar-title span {
+    font-size: 10px;
+    color: #8b8376;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.topbar-title strong {
+    font-family: Georgia, serif;
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.date-display {
+    color: #777168;
+    font-size: 11px;
+}
+
+
+/* ================= CONTENT ================= */
+
+.dashboard-content {
+    padding: 38px;
+}
+
+.dashboard-intro {
+    margin-bottom: 35px;
+}
+
+.dashboard-eyebrow {
+    color: #bd9c52;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
+}
+
+.dashboard-intro h1 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+
+    font-size: 38px;
+
+    font-weight: 400;
+
+    color: #f0ebe2;
+}
+
+.dashboard-intro p {
+    margin-top: 9px;
+
+    color: #777168;
+
+    font-size: 13px;
+}
+
+
+/* ================= STAT CARDS ================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: #111110;
+
+    border: 1px solid #292721;
+
+    padding: 22px;
+
+    min-height: 125px;
+
+    box-sizing: border-box;
+
+    position: relative;
+}
+
+.stat-card::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    top: 0;
+
+    width: 35px;
+    height: 1px;
+
+    background: #b99750;
+}
+
+.stat-label {
+    color: #716b61;
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+.stat-value {
+    margin-top: 22px;
+
+    font-family: Georgia, serif;
+
+    font-size: 30px;
+
+    color: #e9e2d5;
+}
+
+.stat-meta {
+    margin-top: 6px;
+
+    color: #8e8061;
+
+    font-size: 10px;
+}
+
+
+/* ================= LOWER GRID ================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.6fr 1fr;
+
+    gap: 16px;
+}
+
+.panel {
+    background: #111110;
+
+    border: 1px solid #292721;
+}
+
+.panel-header {
+    padding: 20px 22px;
+
+    border-bottom: 1px solid #292721;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.panel-header h2 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+
+    font-size: 17px;
+
+    font-weight: 400;
+}
+
+.panel-header span {
+    color: #6e685f;
+
+    font-size: 10px;
+}
+
+.panel-body {
+    padding: 22px;
+}
+
+
+/* ================= RATE LIST ================= */
+
+.rate-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #22211d;
+}
+
+.rate-item:last-child {
+    border-bottom: none;
+}
+
+.rate-metal {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.rate-metal strong {
+    font-size: 13px;
+
+    font-weight: 400;
+}
+
+.rate-metal span {
+    font-size: 10px;
+
+    color: #6f6a62;
+}
+
+.rate-price {
+    color: #d0ae62;
+
+    font-family: Georgia, serif;
+
+    font-size: 16px;
+}
+
+
+/* ================= QUICK ACTIONS ================= */
+
+.quick-actions {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+}
+
+.quick-action {
+    padding: 18px;
+
+    background: #171613;
+
+    border: 1px solid #292721;
+
+    color: #c9c1b4;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.quick-action:hover {
+    border-color: #8d713d;
+
+    background: #1c1a16;
+}
+
+.quick-action strong {
+    display: block;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+.quick-action span {
+    font-size: 10px;
+
+    color: #716b62;
+}
+
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard-content {
+        padding: 28px;
+    }
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 767px) {
+
+    .dashboard-topbar {
+        height: 64px;
+
+        padding: 0 18px;
+    }
+
+    .topbar-title span {
+        font-size: 8px;
+    }
+
+    .topbar-title strong {
+        font-size: 18px;
+    }
+
+    .dashboard-content {
+        padding: 25px 18px;
+    }
+
+    .dashboard-intro {
+        margin-bottom: 25px;
+    }
+
+    .dashboard-intro h1 {
+        font-size: 31px;
+        line-height: 1.15;
+    }
+
+    .dashboard-intro p {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+
+        margin-bottom: 20px;
+    }
+
+    .stat-card {
+        min-height: 110px;
+
+        padding: 16px;
+    }
+
+    .stat-value {
+        margin-top: 17px;
+
+        font-size: 25px;
+    }
+
+    .stat-label {
+        font-size: 8px;
+    }
+
+    .stat-meta {
+        font-size: 9px;
+    }
+
+    .dashboard-grid {
+        gap: 12px;
+    }
+
+    .panel-header {
+        padding: 17px;
+    }
+
+    .panel-body {
+        padding: 17px;
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .quick-action {
+        padding: 15px;
+    }
+    /* ================= DATA STATES ================= */
+
+    .dashboard-loading {
+        padding: 30px 0;
+        color: #706b62;
+        font-size: 12px;
+    }
+
+    .dashboard-empty {
+        padding: 30px 0;
+        color: #706b62;
+        font-size: 12px;
+    }
+
+    .dashboard-error {
+        margin-bottom: 24px;
+        padding: 14px 16px;
+        border: 1px solid #573737;
+        background: #1b1212;
+        color: #c88b8b;
+        font-size: 12px;
+    }
+}
