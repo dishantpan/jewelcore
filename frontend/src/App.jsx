@@ -17,6 +17,7 @@ import AppLayout from "./components/layout/AppLayout";
 import MetalPrices from "./pages/MetalPrices";
 import Categories from "./pages/Categories";
 import Metals from "./pages/Metals";
+import Purities from "./pages/Purities";
 
 import "./App.css";
 
@@ -144,9 +145,7 @@ function App() {
 
                     <Route
                         path="/purities"
-                        element={
-                            <PlaceholderPage title="Purities" />
-                        }
+                        element={<Purities />}
                     />
 
                     <Route

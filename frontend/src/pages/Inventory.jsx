@@ -11,6 +11,7 @@ import {
     ArrowUpDown,
     Boxes,
 } from "lucide-react";
+import { getInventoryItems } from "../services/inventoryApi";
 import "./Inventory.css";
 
 function Inventory() {
@@ -54,12 +55,8 @@ function Inventory() {
             setLoading(true);
             setError("");
 
-            /*
-             * TEMPORARY:
-             * This keeps the page stable until the exact API
-             * response structure is confirmed.
-             */
-            setItems([]);
+            const data = await getInventoryItems();
+            setItems(Array.isArray(data) ? data : []);
 
         } catch (err) {
             console.error(err);
@@ -80,13 +77,13 @@ function Inventory() {
                     String(item.itemCode || "")
                         .toLowerCase()
                         .includes(query) ||
-                    String(item.name || "")
+                    String(item.jewelleryName || item.name || "")
                         .toLowerCase()
                         .includes(query) ||
-                    String(item.category || "")
+                    String(item.jewellerySku || item.category || "")
                         .toLowerCase()
                         .includes(query) ||
-                    String(item.metal || "")
+                    String(item.location || item.metal || "")
                         .toLowerCase()
                         .includes(query)
                 );
@@ -102,8 +99,8 @@ function Inventory() {
 
         if (sort === "name") {
             result.sort((a, b) =>
-                String(a.name || "").localeCompare(
-                    String(b.name || "")
+                String(a.jewelleryName || a.name || "").localeCompare(
+                    String(b.jewelleryName || b.name || "")
                 )
             );
         }
@@ -111,8 +108,8 @@ function Inventory() {
         if (sort === "weight") {
             result.sort(
                 (a, b) =>
-                    Number(b.weight || 0) -
-                    Number(a.weight || 0)
+                    Number(b.netWeight || b.weight || 0) -
+                    Number(a.netWeight || a.weight || 0)
             );
         }
 
@@ -464,7 +461,8 @@ function Inventory() {
 
                                             <div>
                                                 <strong>
-                                                    {item.name ||
+                                                    {item.jewelleryName ||
+                                                        item.name ||
                                                         "Unnamed item"}
                                                 </strong>
 
@@ -478,15 +476,17 @@ function Inventory() {
                                     </td>
 
                                     <td>
-                                        {item.category || "—"}
+                                        {item.jewellerySku || item.category || "—"}
                                     </td>
 
                                     <td>
-                                        {item.metal || "—"}
+                                        {item.location || item.metal || "—"}
                                     </td>
 
                                     <td>
-                                        {item.weight
+                                        {item.netWeight
+                                            ? `${item.netWeight} g`
+                                            : item.weight
                                             ? `${item.weight} g`
                                             : "—"}
                                     </td>
@@ -558,7 +558,8 @@ function Inventory() {
                                 <div className="mobile-card-top">
 
                                     <strong>
-                                        {item.name ||
+                                        {item.jewelleryName ||
+                                            item.name ||
                                             "Unnamed item"}
                                     </strong>
 
@@ -576,15 +577,17 @@ function Inventory() {
                                 <div className="mobile-card-meta">
 
                                     <span>
-                                        {item.category || "—"}
+                                        {item.jewellerySku || item.category || "—"}
                                     </span>
 
                                     <span>
-                                        {item.metal || "—"}
+                                        {item.location || item.metal || "—"}
                                     </span>
 
                                     <span>
-                                        {item.weight
+                                        {item.netWeight
+                                            ? `${item.netWeight} g`
+                                            : item.weight
                                             ? `${item.weight} g`
                                             : "—"}
                                     </span>

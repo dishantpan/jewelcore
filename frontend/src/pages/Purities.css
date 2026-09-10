@@ -1,0 +1,564 @@
+/* =========================================================
+   PURITIES MASTER DATA - LUXURY DARK GOLD STYLES
+   ========================================================= */
+
+.purities-page {
+    width: 100%;
+    box-sizing: border-box;
+    color: #eeeae1;
+}
+
+.purities-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.purities-eyebrow {
+    color: #bd9c52;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.purities-header h1 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: #f0ebe2;
+}
+
+.purities-header p {
+    margin: 9px 0 0;
+    color: #777168;
+    font-size: 13px;
+}
+
+.purity-add-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 42px;
+    padding: 0 17px;
+    border: 1px solid #8d713d;
+    background: #b99750;
+    color: #0d0c0a;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.purity-add-button:hover {
+    background: #c8a85f;
+    border-color: #c8a85f;
+}
+
+.purity-add-button:active {
+    transform: translateY(1px);
+}
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.purity-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.summary-card {
+    min-height: 84px;
+    padding: 17px 18px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #111110;
+    border: 1px solid #282621;
+}
+
+.summary-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #171511;
+    border: 1px solid #332f26;
+    color: #c9a45c;
+}
+
+.summary-icon.muted {
+    color: #706b61;
+}
+
+.summary-card span {
+    display: block;
+    color: #888278;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.summary-card strong {
+    font-size: 20px;
+    font-weight: 400;
+    color: #f2eee5;
+}
+
+/* =========================================================
+   TOOLBAR
+   ========================================================= */
+
+.purities-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 14px;
+}
+
+.purity-search {
+    width: min(420px, 100%);
+    min-height: 42px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+    background: #111110;
+    border: 1px solid #292721;
+    color: #706b62;
+}
+
+.purity-search input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #e8e1d5;
+    font-size: 12px;
+}
+
+.purity-search input::placeholder {
+    color: #5f5a52;
+}
+
+.clear-search {
+    background: none;
+    border: none;
+    color: #706b61;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.clear-search:hover {
+    color: #c9a45c;
+}
+
+.result-count {
+    color: #706b62;
+    font-size: 11px;
+}
+
+.purities-error {
+    margin-bottom: 18px;
+    padding: 13px 16px;
+    border: 1px solid #5d3838;
+    background: #211615;
+    color: #d58f8f;
+    font-size: 12px;
+}
+
+/* =========================================================
+   PANEL & TABLE
+   ========================================================= */
+
+.purities-panel {
+    background: #111110;
+    border: 1px solid #292721;
+}
+
+.purities-table-wrapper {
+    overflow-x: auto;
+}
+
+.purities-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.purities-table th {
+    min-height: 52px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #292721;
+    color: #6f6a61;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.purities-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #22211d;
+    vertical-align: middle;
+}
+
+.purities-table tr:last-child td {
+    border-bottom: none;
+}
+
+.purity-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.purity-symbol {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #3d3728;
+    background: #161511;
+    color: #c9a45c;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.purity-name-cell strong {
+    display: block;
+    color: #e5ded2;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.purity-name-cell span {
+    color: #706b61;
+    font-size: 10px;
+}
+
+.purity-code {
+    color: #bd9c52;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.purity-percentage-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #191812;
+    border: 1px solid #383424;
+    color: #dfc27e;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+}
+
+.status i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status.active {
+    color: #7ec98d;
+}
+
+.status.active i {
+    background: #7ec98d;
+}
+
+.status.inactive {
+    color: #a49d90;
+}
+
+.status.inactive i {
+    background: #605c54;
+}
+
+.purity-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.icon-action {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid #302d27;
+    color: #817a70;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.icon-action:hover {
+    border-color: #8d713d;
+    color: #d5b66b;
+}
+
+.deactivate-action {
+    padding: 0 12px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid #3d2b2b;
+    color: #b37373;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.deactivate-action:hover {
+    border-color: #733c3c;
+    background: #211615;
+    color: #d58f8f;
+}
+
+/* =========================================================
+   EMPTY & LOADING
+   ========================================================= */
+
+.purity-state,
+.purity-empty {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #777168;
+    padding: 40px 20px;
+}
+
+.purity-empty h2 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #cfc7ba;
+}
+
+.purity-empty p {
+    margin: 0;
+    font-size: 12px;
+    color: #706b61;
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.purity-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.purity-modal {
+    width: min(480px, 100%);
+    background: #111110;
+    border: 1px solid #39352c;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+    border-bottom: 1px solid #292721;
+}
+
+.modal-header span {
+    color: #bd9c52;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.modal-header h2 {
+    margin: 6px 0 0;
+    color: #eee8dd;
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.modal-close {
+    background: transparent;
+    border: 1px solid #302d27;
+    color: #817a70;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    border-color: #8d713d;
+    color: #d5b66b;
+}
+
+.purity-form {
+    padding: 24px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.form-field label {
+    color: #aaa195;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+.form-field input {
+    height: 44px;
+    box-sizing: border-box;
+    padding: 0 13px;
+    outline: none;
+    background: #0d0d0c;
+    border: 1px solid #302d27;
+    color: #eeeae1;
+    font-size: 12px;
+    transition: border-color 0.2s ease;
+}
+
+.form-field input:focus {
+    border-color: #8d713d;
+}
+
+.field-hint {
+    color: #706b61;
+    font-size: 10px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.btn-secondary,
+.btn-primary {
+    min-height: 42px;
+    padding: 0 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: 0.2s ease;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid #302d27;
+    color: #aaa297;
+}
+
+.btn-secondary:hover {
+    border-color: #8d713d;
+    color: #d5b66b;
+}
+
+.btn-primary {
+    border: 1px solid #8d713d;
+    background: #c5a35d;
+    color: #17130c;
+}
+
+.btn-primary:hover {
+    background: #d3b36d;
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+    .purities-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .purity-add-button {
+        width: 100%;
+    }
+
+    .purity-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .purities-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .purity-search {
+        width: 100%;
+    }
+
+    .purity-modal-backdrop {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .purity-modal {
+        width: 100%;
+        border-bottom: none;
+    }
+}

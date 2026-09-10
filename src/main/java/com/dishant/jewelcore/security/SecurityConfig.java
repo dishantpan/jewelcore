@@ -21,7 +21,10 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
@@ -126,6 +129,42 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/v1/auth/login"
                         ).permitAll()
+
+                        // User management is strictly OWNER only
+                        .requestMatchers(
+                                "/api/v1/users/**"
+                        ).hasRole("OWNER")
+
+                        // Master data modifications are OWNER only
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/api/v1/metals/**",
+                                "/api/v1/purities/**",
+                                "/api/v1/categories/**",
+                                "/api/v1/metal-prices/**",
+                                "/api/v1/jewellery/**"
+                        ).hasRole("OWNER")
+                        .requestMatchers(
+                                HttpMethod.PUT,
+                                "/api/v1/metals/**",
+                                "/api/v1/purities/**",
+                                "/api/v1/categories/**",
+                                "/api/v1/metal-prices/**",
+                                "/api/v1/jewellery/**"
+                        ).hasRole("OWNER")
+                        .requestMatchers(
+                                HttpMethod.DELETE,
+                                "/api/v1/metals/**",
+                                "/api/v1/purities/**",
+                                "/api/v1/categories/**",
+                                "/api/v1/jewellery/**"
+                        ).hasRole("OWNER")
+
+                        // Mark item damaged is OWNER only
+                        .requestMatchers(
+                                HttpMethod.PUT,
+                                "/api/v1/inventory-items/*/damage"
+                        ).hasRole("OWNER")
 
                         .anyRequest()
                         .authenticated()
