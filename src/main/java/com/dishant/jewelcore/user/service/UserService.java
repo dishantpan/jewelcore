@@ -1,5 +1,6 @@
 package com.dishant.jewelcore.user.service;
 
+import java.util.List;
 import com.dishant.jewelcore.common.exception.ResourceNotFoundException;
 import com.dishant.jewelcore.user.entity.User;
 import com.dishant.jewelcore.user.entity.UserRole;
@@ -7,6 +8,8 @@ import com.dishant.jewelcore.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -52,6 +55,11 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "User not found: " + username
                 ));
+    }
+
+    @Transactional(readOnly = true)
+    public List<User> getAllUsers() {
+        return userRepository.findAllByOrderByCreatedAtDesc();
     }
 
     @Transactional

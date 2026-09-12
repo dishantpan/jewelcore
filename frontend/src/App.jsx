@@ -18,6 +18,7 @@ import MetalPrices from "./pages/MetalPrices";
 import Categories from "./pages/Categories";
 import Metals from "./pages/Metals";
 import Purities from "./pages/Purities";
+import Users from "./pages/Users";
 
 import "./App.css";
 
@@ -162,9 +163,7 @@ function App() {
 
                     <Route
                         path="/users"
-                        element={
-                            <PlaceholderPage title="Users" />
-                        }
+                        element={<Users />}
                     />
 
                     <Route

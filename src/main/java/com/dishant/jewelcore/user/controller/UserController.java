@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -39,6 +41,23 @@ public class UserController {
                         )
                 );
     }
+    @GetMapping
+    public ResponseEntity<ApiResponse<List<UserResponse>>> getAllUsers() {
+
+        List<User> users = userService.getAllUsers();
+
+        List<UserResponse> responses = users.stream()
+                .map(UserResponse::from)
+                .toList();
+
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        "Users fetched successfully",
+                        responses
+                )
+        );
+    }
+
     @GetMapping("/{username}")
     public ResponseEntity<ApiResponse<UserResponse>> getUserByUsername(
             @PathVariable String username) {
