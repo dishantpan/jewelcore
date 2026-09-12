@@ -26,6 +26,8 @@ function DesktopSidebar() {
     const role =
         localStorage.getItem("role") || "USER";
 
+    const isOwner = role === "OWNER";
+
     const navigation = [
         {
             label: "Overview",
@@ -46,21 +48,25 @@ function DesktopSidebar() {
             label: "Categories",
             path: "/categories",
             icon: Tags,
+            role: "OWNER",
         },
         {
             label: "Metals",
             path: "/metals",
             icon: CircleDollarSign,
+            role: "OWNER",
         },
         {
             label: "Purities",
             path: "/purities",
             icon: Percent,
+            role: "OWNER",
         },
         {
             label: "Metal Prices",
             path: "/metal-prices",
             icon: TrendingUp,
+            role: "OWNER",
         },
         {
             label: "Pricing",
@@ -76,13 +82,17 @@ function DesktopSidebar() {
             label: "Reports",
             path: "/reports",
             icon: BarChart3,
+            role: "OWNER",
         },
         {
             label: "Users",
             path: "/users",
             icon: Users,
+            role: "OWNER",
         },
     ];
+
+    const filteredNavigation = navigation.filter(item => !item.role || isOwner);
 
     const handleNavigation = (path) => {
         navigate(path);
@@ -140,7 +150,7 @@ function DesktopSidebar() {
 
             <nav className="desktop-sidebar-nav">
 
-                {navigation.map((item) => {
+                {filteredNavigation.map((item) => {
 
                     const Icon = item.icon;
 
