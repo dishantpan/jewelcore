@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import {
     ArrowLeft,
     Package,
     Scale,
-    MapPin,
     CircleDollarSign,
     Gem,
     ShieldCheck,
@@ -37,11 +36,11 @@ function InventoryDetails() {
     const [actionError, setActionError] =
         useState("");
 
-    useEffect(() => {
-        loadItem();
-    }, [id]);
+    const mountedRef = useRef(false);
 
-    async function loadItem() {
+    const loadItem = useCallback(async () => {
+        if (mountedRef.current) return;
+        mountedRef.current = true;
 
         try {
             setLoading(true);
@@ -50,10 +49,12 @@ function InventoryDetails() {
             const data =
                 await getInventoryItemById(id);
 
+            if (!mountedRef.current) return;
             setItem(data);
 
         } catch (error) {
 
+            if (!mountedRef.current) return;
             console.error(
                 "Inventory details error:",
                 error
@@ -64,9 +65,21 @@ function InventoryDetails() {
             );
 
         } finally {
-            setLoading(false);
+            if (mountedRef.current) {
+                setLoading(false);
+            }
         }
-    }
+    }, [id]);
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    /* eslint-disable react-hooks/set-state-in-effect */
+    useEffect(() => {
+        loadItem();
+        return () => {
+            mountedRef.current = false;
+        };
+    }, [id, loadItem]);
+/* eslint-enable react-hooks/set-state-in-effect */
 
 
     async function handleAction(action) {

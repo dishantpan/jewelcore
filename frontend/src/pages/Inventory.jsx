@@ -26,10 +26,6 @@ function Inventory() {
     const [sort, setSort] = useState("recent");
     const [showFilters, setShowFilters] = useState(false);
 
-    const role = (
-        localStorage.getItem("role") || "SALESPERSON"
-    ).toUpperCase();
-
     useEffect(() => {
         loadInventory();
     }, []);

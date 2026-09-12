@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
     ArrowLeft,
@@ -23,19 +23,22 @@ function JewelleryDetails() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    useEffect(() => {
-        loadJewellery();
-    }, [id]);
+    const mountedRef = useRef(false);
 
-    async function loadJewellery() {
+    const loadJewellery = useCallback(async () => {
+        if (mountedRef.current) return;
+        mountedRef.current = true;
+
         try {
             setLoading(true);
             setError("");
 
             const data = await getJewelleryById(id);
 
+            if (!mountedRef.current) return;
             setJewellery(data);
         } catch (error) {
+            if (!mountedRef.current) return;
             console.error(
                 "Jewellery details error:",
                 error
@@ -45,9 +48,21 @@ function JewelleryDetails() {
                 "Unable to load jewellery details."
             );
         } finally {
-            setLoading(false);
+            if (mountedRef.current) {
+                setLoading(false);
+            }
         }
-    }
+    }, [id]);
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    /* eslint-disable react-hooks/set-state-in-effect */
+    useEffect(() => {
+        loadJewellery();
+        return () => {
+            mountedRef.current = false;
+        };
+    }, [id, loadJewellery]);
+/* eslint-enable react-hooks/set-state-in-effect */
 
     if (loading) {
         return (

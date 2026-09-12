@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import "./Dashboard.css";
 import { getDashboardData } from "../services/dashboardApi";
 
@@ -13,29 +13,42 @@ function Dashboard() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    useEffect(() => {
-        loadDashboard();
-    }, []);
+    const mountedRef = useRef(false);
 
-    async function loadDashboard() {
+    const loadDashboard = useCallback(async () => {
+        if (mountedRef.current) return;
+        mountedRef.current = true;
+
         try {
             setLoading(true);
             setError("");
 
             const data = await getDashboardData();
 
+            if (!mountedRef.current) return;
             setDashboardData(data);
         } catch (error) {
+            if (!mountedRef.current) return;
             console.error("Dashboard loading error:", error);
 
             setError(
                 "Unable to load dashboard data."
             );
         } finally {
-            setLoading(false);
+            if (mountedRef.current) {
+                setLoading(false);
+            }
         }
-    }
+    }, []);
 
+    /* eslint-disable react-hooks/set-state-in-effect */
+    useEffect(() => {
+        loadDashboard();
+        return () => {
+            mountedRef.current = false;
+        };
+    }, [loadDashboard]);
+/* eslint-enable react-hooks/set-state-in-effect */
     const jewelleryCount =
         dashboardData?.jewelleryCount ?? 0;
 

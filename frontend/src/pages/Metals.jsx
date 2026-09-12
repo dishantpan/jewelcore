@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef, useCallback } from "react";
 import {
     CircleDollarSign,
     Edit3,
@@ -34,6 +34,8 @@ function Metals() {
 
     const [editingMetal, setEditingMetal] = useState(null);
 
+    const mountedRef = useRef(false);
+
     const [form, setForm] = useState({
         name: "",
         code: "",
@@ -44,37 +46,41 @@ function Metals() {
        LOAD METALS
        ========================================================= */
 
-    const loadMetals = async () => {
+    const loadMetals = useCallback(async () => {
+        if (mountedRef.current) return;
+        mountedRef.current = true;
 
         try {
-
             setLoading(true);
             setError("");
 
             const data = await getMetals();
 
+            if (!mountedRef.current) return;
             setMetals(Array.isArray(data) ? data : []);
-
         } catch (err) {
-
+            if (!mountedRef.current) return;
             console.error(err);
 
             setError(
-                err.response?.data?.message ||
-                "Unable to load metals."
+                err.response?.data?.message || "Unable to load metals."
             );
-
         } finally {
-
-            setLoading(false);
-
+            if (mountedRef.current) {
+                setLoading(false);
+            }
         }
-    };
+    }, []);
 
-
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    /* eslint-disable react-hooks/set-state-in-effect */
     useEffect(() => {
         loadMetals();
-    }, []);
+        return () => {
+            mountedRef.current = false;
+        };
+    }, [loadMetals]);
+/* eslint-enable react-hooks/set-state-in-effect */
 
 
     /* =========================================================

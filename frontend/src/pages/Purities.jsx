@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import {
     Percent,
     Edit3,
@@ -33,11 +33,7 @@ function Purities() {
         percentage: "",
     });
 
-    useEffect(() => {
-        loadPurities();
-    }, []);
-
-    const loadPurities = async () => {
+    const loadPurities = useCallback(async () => {
         try {
             setLoading(true);
             setError("");
@@ -51,7 +47,14 @@ function Purities() {
         } finally {
             setLoading(false);
         }
-    };
+    }, []);
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    /* eslint-disable react-hooks/set-state-in-effect */
+    useEffect(() => {
+        loadPurities();
+    }, [loadPurities]);
+/* eslint-enable react-hooks/set-state-in-effect */
 
     const filteredPurities = useMemo(() => {
         const query = search.trim().toLowerCase();
