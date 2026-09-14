@@ -13,6 +13,8 @@ import {
     User,
     X,
     LoaderCircle,
+    Camera,
+    Barcode,
 } from "lucide-react";
 
 import {
@@ -23,6 +25,10 @@ import {
     searchCustomers,
 } from "../services/billingApi";
 
+import {
+    getInventoryItemById,
+} from "../services/inventoryApi";
+
 import "./Billing.css";
 
 function Billing() {
@@ -32,6 +38,9 @@ function Billing() {
     const [customerPhone, setCustomerPhone] = useState("");
     const [customerId, setCustomerId] = useState(null);
     const [search, setSearch] = useState("");
+    const [barcodeInput, setBarcodeInput] = useState("");
+    const [scanningBarcode, setScanningBarcode] = useState(false);
+    const [barcodeError, setBarcodeError] = useState("");
     const [discount, setDiscount] = useState("");
     const [paymentMethod, setPaymentMethod] = useState("CASH");
 
@@ -87,6 +96,28 @@ function Billing() {
                 item.purityName?.toLowerCase().includes(query)
         );
     }, [inventory, search]);
+
+    const handleBarcodeScan = async () => {
+        if (!barcodeInput.trim() || scanningBarcode) return;
+
+        setScanningBarcode(true);
+        setBarcodeError("");
+
+        try {
+            const data = await getInventoryItemById(barcodeInput.trim());
+            if (data) {
+                await handleAddToCart(data);
+                setBarcodeInput("");
+            } else {
+                setBarcodeError("Item not found");
+            }
+        } catch (err) {
+            console.error(err);
+            setBarcodeError("Invalid barcode/item code");
+        } finally {
+            setScanningBarcode(false);
+        }
+    };
 
     const handleAddToCart = async (item) => {
         const itemId = item.id;
@@ -301,6 +332,29 @@ function Billing() {
                                     <X size={15} />
                                 </button>
                             )}
+                        </div>
+
+                        <div className="barcode-scanner-section">
+                            <div className="scanner-input-group">
+                                <Camera size={18} />
+                                <input
+                                    type="text"
+                                    placeholder="Scan barcode/QR or enter item code..."
+                                    value={barcodeInput}
+                                    onChange={(e) => setBarcodeInput(e.target.value)}
+                                    onKeyDown={(e) => e.key === "Enter" && handleBarcodeScan()}
+                                />
+                                <button
+                                    className="scan-btn"
+                                    onClick={handleBarcodeScan}
+                                    disabled={!barcodeInput.trim() || scanningBarcode}
+                                >
+                                    {scanningBarcode ? <LoaderCircle size={16} className="spin" /> : <Barcode size={16} />}
+                                    {scanningBarcode ? "Scanning..." : "Scan"}
+                                </button>
+                                {scanningBarcode && <span className="scanner-status">Looking up item...</span>}
+                            </div>
+                            {barcodeError && <div className="scanner-error">{barcodeError}</div>}
                         </div>
 
                         <div className="product-list">
