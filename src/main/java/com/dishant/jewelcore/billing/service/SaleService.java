@@ -235,7 +235,7 @@ public class SaleService {
                 .build();
     }
 
-    private SaleResponse mapToResponse(Sale sale) {
+    public SaleResponse mapToResponse(Sale sale) {
         SaleResponse response = new SaleResponse();
         response.setId(sale.getId());
         response.setSaleNumber(sale.getSaleNumber());
@@ -295,5 +295,21 @@ public class SaleService {
         response.setPayments(paymentResponses);
 
         return response;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Sale> getAllSales() {
+        return saleRepository.findAllByOrderBySaleDateDesc();
+    }
+
+    @Transactional(readOnly = true)
+    public Sale getSaleById(Long id) {
+        return saleRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Sale not found: " + id));
+    }
+
+    @Transactional(readOnly = true)
+    public List<Sale> getSalesByCustomer(Long customerId) {
+        return saleRepository.findByCustomerIdOrderBySaleDateDesc(customerId);
     }
 }

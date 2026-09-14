@@ -20,4 +20,6 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
     List<Sale> findByPaymentStatus(String paymentStatus);
 
     boolean existsBySaleNumber(String saleNumber);
+
+    List<Sale> findAllByOrderBySaleDateDesc();
 }
