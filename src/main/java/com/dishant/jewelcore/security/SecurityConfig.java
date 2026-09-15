@@ -166,6 +166,18 @@ public class SecurityConfig {
                                 "/api/v1/inventory-items/*/damage"
                         ).hasRole("OWNER")
 
+                        // Billing - both OWNER and SALESPERSON can access
+                        .requestMatchers(
+                                "/api/v1/bills/**",
+                                "/api/v1/customers/**",
+                                "/api/v1/barcode/**"
+                        ).authenticated()
+
+                        // Reports - OWNER only
+                        .requestMatchers(
+                                "/api/v1/reports/**"
+                        ).hasRole("OWNER")
+
                         .anyRequest()
                         .authenticated()
                 );
