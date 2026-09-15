@@ -19,6 +19,7 @@ import Categories from "./pages/Categories";
 import Metals from "./pages/Metals";
 import Purities from "./pages/Purities";
 import Users from "./pages/Users";
+import Reports from "./pages/Reports";
 
 import "./App.css";
 
@@ -156,9 +157,7 @@ function App() {
 
                     <Route
                         path="/reports"
-                        element={
-                            <PlaceholderPage title="Reports" />
-                        }
+                        element={<Reports />}
                     />
 
                     <Route
